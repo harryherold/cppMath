@@ -17,20 +17,9 @@ public:
   ~Matrix();
 
   static Matrix < T > eye(unsigned int);
+
   T & operator()(unsigned int, unsigned int);
-
-  friend std::ostream & operator<<(std::ostream & out, Matrix < T > &m)
-  {
-    for (auto i = 0; i < m.getHeight(); i++) {
-      for (auto j = 0; j < m.getWidth(); j++) {
-        out << " " << m(i, j) << " ";
-      }
-      out << "\n";
-    }
-    return out;
-  }
-
-  void print(void);
+  friend std::ostream & operator<<(std::ostream&, Matrix < T >&);
 
   unsigned int getWidth(void);
   unsigned int getHeight(void);
@@ -66,6 +55,17 @@ template < class T > unsigned int Matrix < T >::getWidth(void)
 template < class T > T & Matrix < T >::operator()(unsigned int h, unsigned int w)
 {
   return m_data[h][w];
+}
+
+template < class T > std::ostream & operator<<(std::ostream & out, Matrix < T > &m)
+{
+  for (auto i = 0; i < m.getHeight(); i++) {
+    for (auto j = 0; j < m.getWidth(); j++) {
+      out << " " << m(i, j) << " ";
+    }
+    out << "\n";
+  }
+  return out;
 }
 
 template < class T > Matrix < T > Matrix < T >::eye(unsigned int size)
