@@ -33,6 +33,14 @@ template < class T > std::vector < std::vector < T > > Matrix < T >::getData( vo
   return m_data;
 }
 
+template < class T > Matrix< T > & Matrix < T >::operator = ( Matrix< T > const & obj )
+{
+  m_height = obj.getHeight();
+  m_width  = obj.getWidth();
+  m_data   = obj.getData();
+  return *this;
+}
+
 template < class T > T & Matrix < T >::operator()(unsigned int h, unsigned int w)
 {
   return m_data[h][w];

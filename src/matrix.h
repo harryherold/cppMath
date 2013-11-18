@@ -8,13 +8,12 @@ template < class T > class Matrix {
 public:
   /**
    * TODO
-   * copy constructor
-   * overload operator =
    * static Matrix<T> diag( std::vector<T> , unsigned int);
    * Matirx( std::vector<T> , unsigned int, unsigned int);
    */
   Matrix( Matrix< T > & );
   Matrix(unsigned int, unsigned int);
+  Matrix< T > & operator = ( Matrix< T > const & );
   ~Matrix();
 
   static Matrix < T > eye(unsigned int);
@@ -24,7 +23,8 @@ public:
 
   unsigned int getWidth(void);
   unsigned int getHeight(void);
-  std::vector < std::vector < T > > getData();
+  std::vector < std::vector < T > > getData( void );
+
 private:
   unsigned int m_width;
   unsigned int m_height;

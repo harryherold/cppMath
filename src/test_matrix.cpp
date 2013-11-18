@@ -27,14 +27,14 @@ TEST(Matrix, Fill)
       LONGS_EQUAL(iMatrix(i, j), 42);
 }
 
-TEST(Matrix, Eye)
-{
-  Matrix < int >m = Matrix < int >::eye(10);
+//~ TEST(Matrix, Eye)
+//~ {
+  //~ Matrix < int >m  = Matrix < int >::eye(10);
 
-  for (auto i = 0; i < 10; i++) {
-    LONGS_EQUAL(m(i, i), 1);
-  }
-}
+  //~ for (auto i = 0; i < 10; i++) {
+    //~ LONGS_EQUAL(m(i, i), 1);
+  //~ }
+//~ }
 
 int
 main(int argc, char **argv)
