@@ -7,6 +7,13 @@ m_data(h, std::vector < T > (w))
 {
 }
 
+template < class T > Matrix < T >::Matrix( Matrix< T > & obj )
+:m_width( obj.getWidth ),
+m_height( obj.getHeight ),
+m_data( obj.getData() )
+{
+}
+
 template < class T > Matrix < T >::~Matrix()
 {
 }
@@ -19,6 +26,11 @@ template < class T > unsigned int Matrix < T >::getHeight(void)
 template < class T > unsigned int Matrix < T >::getWidth(void)
 {
   return m_data[0].size();
+}
+
+template < class T > std::vector < std::vector < T > > Matrix < T >::getData( void )
+{
+  return m_data;
 }
 
 template < class T > T & Matrix < T >::operator()(unsigned int h, unsigned int w)

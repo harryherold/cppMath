@@ -13,6 +13,7 @@ public:
    * static Matrix<T> diag( std::vector<T> , unsigned int);
    * Matirx( std::vector<T> , unsigned int, unsigned int);
    */
+  Matrix( Matrix< T > & );
   Matrix(unsigned int, unsigned int);
   ~Matrix();
 
@@ -23,7 +24,7 @@ public:
 
   unsigned int getWidth(void);
   unsigned int getHeight(void);
-
+  std::vector < std::vector < T > > getData();
 private:
   unsigned int m_width;
   unsigned int m_height;
