@@ -2,6 +2,7 @@
 #define MATRIX_H
 #include <vector>
 #include <iostream>
+#include <cstdint>
 
 template < class T > class Matrix {
 
@@ -12,23 +13,26 @@ public:
    * Matirx( std::vector<T> , unsigned int, unsigned int);
    */
   Matrix( Matrix< T > & );
-  Matrix(unsigned int, unsigned int);
-  Matrix< T > & operator = ( Matrix< T > const & );
+  Matrix(uint32_t, uint32_t);
+  Matrix(uint32_t);
+  Matrix< T > & operator = ( Matrix< T > & );
   ~Matrix();
 
-  static Matrix < T > eye(unsigned int);
+  void eye( void );
 
-  T & operator()(unsigned int, unsigned int);
+  T & operator()(uint32_t, uint32_t);
   friend std::ostream & operator<<(std::ostream&, Matrix < T >&);
 
-  unsigned int getWidth(void);
-  unsigned int getHeight(void);
+  uint32_t getWidth(void);
+  uint32_t getHeight(void);
   std::vector < std::vector < T > > getData( void );
 
 private:
-  unsigned int m_width;
-  unsigned int m_height;
+  uint32_t m_width;
+  uint32_t m_height;
   std::vector < std::vector < T > >m_data;
+
+  Matrix();
 };
 
 #include "matrix.cpp"
