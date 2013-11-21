@@ -17,13 +17,6 @@ m_data(h, std::vector < T > (w))
 {
 }
 
-template < class T > Matrix < T >::Matrix( Matrix< T > & obj )
-:m_width( obj.getWidth() ),
-m_height( obj.getHeight() ),
-m_data( obj.getData() )
-{
-}
-
 template < class T > Matrix < T >::~Matrix()
 {
 }
@@ -43,28 +36,54 @@ template < class T > std::vector < std::vector < T > > Matrix < T >::getData( vo
   return m_data;
 }
 
-template < class T > Matrix< T > & Matrix < T >::operator = ( Matrix< T > & obj )
+template < class T > void Matrix < T >::operator = ( Matrix< T > m )
 {
-  m_height = obj.getHeight();
-  m_width  = obj.getWidth();
-  m_data   = obj.getData();
-  return *this;
+  m_height = m.getHeight();
+  m_width  = m.getWidth();
+  m_data   = m.getData();
+}
+
+template < class T > Matrix< T > Matrix < T >::operator + ( Matrix< T > obj )
+{
+  Matrix < T > m( m_width , m_height );
+
+  for( auto i = 0; i < m_height ; i++ )
+  {
+    for( auto j = 0 ; j < m_width ; j++ )
+    {
+        m( i , j ) = (*this)(i,j) + obj( i , j );
+    }
+  }
+  return m;
+}
+
+template < class T > Matrix< T > Matrix < T >::operator - ( void )
+{
+  Matrix < T > m( m_width , m_height );
+
+  for( auto i = 0; i < m_height ; i++ )
+  {
+    for( auto j = 0 ; j < m_width ; j++ )
+    {
+      m( i , j ) = -(*this)(i,j);
+    }
+  }
+
+  return m;
+}
+
+template < class T > Matrix< T > Matrix < T >::operator - ( Matrix < T > obj )
+{
+  Matrix < T > m( obj.m_width , obj.m_height );
+
+  m = (*this) + ( - obj );
+
+  return m;
 }
 
 template < class T > T & Matrix < T >::operator()(uint32_t h, uint32_t w)
 {
   return m_data[h][w];
-}
-
-template < class T > std::ostream & operator<<(std::ostream & out, Matrix < T > &m)
-{
-  for (auto i = 0; i < m.getHeight(); i++) {
-    for (auto j = 0; j < m.getWidth(); j++) {
-      out << " " << m(i, j) << " ";
-    }
-    out << "\n";
-  }
-  return out;
 }
 
 template < class T > void Matrix < T >::eye( void )
