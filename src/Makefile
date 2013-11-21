@@ -3,7 +3,7 @@ CPPU_TEST = $(HOME)/procs/cpputest
 CC = clang
 CPP = clang++
 
-CFLAGS = -std=c++11 -Wall -c
+CFLAGS = -std=c++11 -Wall -c -g -O0
 
 SOURCES = test_matrix.cpp
 
